@@ -1,0 +1,34 @@
+﻿@model WebUI.Controllers.BlogViewModel.IndexModel
+@{
+    ViewBag.Title = "Index";
+}
+<section class="main-section blog-section" id="blog-posts">
+    <span class="loading">loading blog posts ...</span>
+    @foreach (var post in Model.Posts)
+    {
+    <article id="@post.Id">
+        <hgroup>
+            <h2><a href="@Url.Action("Post", "Blog", new { id = post.Id })">@post.Title&nbsp;</a></h2>
+            <h3><a href="#@post.Id">@post.Published</a></h3>
+        </hgroup>
+        <footer>
+            <h4>Tags</h4>
+            <ul class="tags">
+            
+            </ul>
+        </footer>
+    </article>
+    }
+</section>
+@*暂时不使用Ajax*@ @*
+@section extra_inline_js
+{
+    <script type="text/javascript">
+        $(function() {
+            //if post_id fetch single blog
+            //elseif has tag_slug fetch it
+            //else fetch all blogs
+        })
+    </script>
+}
+*@ 
