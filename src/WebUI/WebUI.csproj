@@ -120,10 +120,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Application\Authentication\PlogRoleProvider.cs" />
+    <Compile Include="Application\Extensions\ViewDataDictionaryExtensions.cs" />
     <Compile Include="App_Start\MiniProfiler.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\AccountController.cs" />
     <Compile Include="Areas\Admin\Controllers\AuthController.cs" />
+    <Compile Include="Areas\Admin\Controllers\AuthViewModel.cs" />
     <Compile Include="Areas\Admin\Controllers\DashboardController.cs" />
     <Compile Include="Areas\Admin\Controllers\DashboardViewModel.cs" />
     <Compile Include="Controllers\BlogController.cs" />

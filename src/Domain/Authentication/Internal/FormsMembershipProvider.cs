@@ -9,11 +9,11 @@ using Domain.Services.Authentication;
 
 namespace Domain.Authentication.Internal
 {
-    public class FormsPlogMembershipProvider:IMembershipProvider
+    public class FormsMembershipProvider : IMembershipProvider
     {
         private readonly UserService service;
 
-        public FormsPlogMembershipProvider(IUserRepository repository)
+        public FormsMembershipProvider(IUserRepository repository)
         {
             service=new UserService(repository);
         }

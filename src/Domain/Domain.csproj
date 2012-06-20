@@ -53,13 +53,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Authentication\AuthenticationModule.cs" />
-    <Compile Include="Authentication\IAuthenticator.cs" />
-    <Compile Include="Authentication\IMembershipProvider.cs" />
+    <Compile Include="Authentication\AuthenticationModule.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Authentication\IAuthenticator.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Authentication\IMembershipProvider.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Authentication\Internal\FormsAuthenticator.cs" />
-    <Compile Include="Authentication\Internal\FormsPlogMembershipProvider.cs" />
+    <Compile Include="Authentication\Internal\FormsMembershipProvider.cs" />
     <Compile Include="Authentication\Internal\FormsRoleProvider.cs" />
-    <Compile Include="Authentication\IRoleProvider.cs" />
+    <Compile Include="Authentication\IRoleProvider.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Models\Authentication\Role.cs" />
     <Compile Include="Models\Authentication\User.cs" />
     <Compile Include="Models\Post.cs" />
