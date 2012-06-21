@@ -1,0 +1,92 @@
+@charset "utf-8";
+/* CSS Document */
+#news_content{
+	width:956px;
+	margin:0 auto;
+}
+#news_side{
+	width:250px;
+	height:875px;
+	background:url(../images/side_bg1.jpg) no-repeat;
+	padding-top:100px;
+	float:left;
+}
+#news_side p{
+	font-size:18px;
+	height:60px;
+	line-height:60px;
+	text-align:center;
+}
+#news_side p a,span{
+	cursor:pointer;
+	color:#666;
+}
+#aside1{
+	margin:0 auto;
+}
+#aside1 a img{
+	display:block;
+	margin:0 auto;
+}
+#aside1 a p{
+	font-size:14px;
+	height:20px;
+	line-height:20px;
+}
+.news_list{
+	background:url(../images/news_list_bg.jpg) no-repeat;
+	width:700px;
+	float:right;
+}
+.news_list div{
+	color:#909715;
+	padding:60px 0 20px 90px;
+	font-size:24px;
+}
+.news_list ul{
+	padding-left:90px; 
+}
+.news_list ul li{
+	background:url(../images/news_list_bott.jpg) repeat-x bottom;
+	height:24px;
+	line-height:24px;
+	width:540px;
+	overflow:hidden;
+}
+.news_list ul li a{
+	overflow:hidden;
+	background:url(../images/news_list_left.jpg) no-repeat left;
+	padding-left:20px;
+	float:left;
+	display:block;
+	width:460px;
+	font-size:12px;
+}
+.news_list ul li span{
+	float:right;
+	font-size:12px;
+}
+.school_news{
+	
+	
+}
+.society_news{
+	
+}
+
+
+
+/*三级页面*/
+.news_article{
+	background:url(../images/news_list_bg.jpg) no-repeat;
+	width:700px;
+	float:right;
+}
+.news_article h2{
+	color:#909715;
+	padding:60px 0 20px 90px;
+	font-size:24px;
+	}
+	
+	
+

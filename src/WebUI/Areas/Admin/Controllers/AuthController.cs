@@ -26,7 +26,7 @@ namespace WebUI.Areas.Admin.Controllers
             return View();
         }
 
-        [HttpGet]
+        [HttpPost]
         public ActionResult Login(AuthViewModel.LoginModel model)
         {
             if (!ModelState.IsValid)

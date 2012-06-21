@@ -8,7 +8,7 @@ using Domain.Authentication;
 
 namespace WebUI.Application.Authentication
 {
-    public class PlogRoleProvider:RoleProvider
+    public class PlogRoleProvider : System.Web.Security.RoleProvider
     {
         public PlogRoleProvider()
         {

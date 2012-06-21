@@ -1,5 +1,7 @@
-﻿using System.Web;
+﻿using System.Linq;
+using System.Web;
 using System.Web.Mvc;
+using Domain.Models;
 
 namespace WebUI.Application.Extensions
 {
@@ -9,5 +11,6 @@ namespace WebUI.Application.Extensions
         {
             return HttpContext.Current.User.Identity.IsAuthenticated;
         }
+
     }
 }

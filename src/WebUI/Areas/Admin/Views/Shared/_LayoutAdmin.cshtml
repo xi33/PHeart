@@ -25,7 +25,8 @@
             <li><a href="#">OPTION</a></li>
             @*<li class="logout"><a href="#">LOGOUT</a></li>*@
             <li class="logout">
-                @if (ViewData.IsLoggedIn())
+                @*@if (ViewData.IsLoggedIn())*@
+                @if(Request.IsAuthenticated)
                 {
                     <a href="@Url.Action("LogOut", "Auth")">退出</a>
                 }else

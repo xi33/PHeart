@@ -11,7 +11,7 @@ namespace Domain.Authentication
         //bool ValidateUser(string username, string password);
 
         void CreateUser(string email, string username, string password);
-
+        bool ValidateUser(string username, string password);
         IEnumerable<User> GetUsers();
 
     }
