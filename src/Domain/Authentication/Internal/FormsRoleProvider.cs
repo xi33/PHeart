@@ -18,19 +18,19 @@ namespace Domain.Authentication.Internal
             roleService=new RoleService(roleRepository);
         }
 
+
         public bool IsUserInRole(string username, string roleName)
         {
-            //var user = userService.GetUser(username);
-            //var role = roleService.GetRole(roleName);
-            //if (user == null || role == null)
-            //    return false;
-            //return user.Roles.Any(_ => _.Name == roleName);
-            return true;
+            var user = userService.GetUser(username);
+            var role = roleService.GetRole(roleName);
+            if (user == null || role == null)
+                return false;
+            return user.Roles.Any(_=>_.Name==roleName);
         }
 
         public string[] GetRolesForUser(string username)
         {
-            return new[] { "Admin", "Moderator" };
+            throw new NotImplementedException();
         }
     }
 }

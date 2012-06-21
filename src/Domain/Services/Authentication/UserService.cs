@@ -23,9 +23,9 @@ namespace Domain.Services.Authentication
         }
 
         // Get user by username
-        public User GetUser(string name)
+        public User GetUser(string username)
         {
-            return repository.GetAll().SingleOrDefault(u => u.Name == name);
+            return repository.GetAll().SingleOrDefault(u => u.Username == username);
         }
 
         //C

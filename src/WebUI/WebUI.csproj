@@ -120,22 +120,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Application\Authentication\PlogMembershipProvider.cs" />
-    <Compile Include="Application\Authentication\PlogRoleProvider.cs" />
-    <Compile Include="Application\Extensions\ViewDataDictionaryExtensions.cs" />
     <Compile Include="App_Start\MiniProfiler.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\AccountController.cs" />
     <Compile Include="Areas\Admin\Controllers\AuthController.cs" />
-    <Compile Include="Areas\Admin\Controllers\AuthViewModel.cs" />
     <Compile Include="Areas\Admin\Controllers\DashboardController.cs" />
     <Compile Include="Areas\Admin\Controllers\DashboardViewModel.cs" />
     <Compile Include="Controllers\BlogController.cs" />
     <Compile Include="Controllers\BlogViewModel.cs" />
-    <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\HomeViewModel.cs" />
-    <Compile Include="Controllers\NewsViewModel.cs" />
-    <Compile Include="Controllers\NewsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -164,45 +156,32 @@
     <Content Include="Areas\Admin\Content\img\transdmin-light.gif" />
     <Content Include="Areas\Admin\Content\js\jNice.js" />
     <Content Include="Areas\Admin\Content\js\jquery.js" />
-    <Content Include="Content\css\header.css" />
-    <Content Include="Content\css\html5-base.css" />
-    <Content Include="Content\css\main.css" />
-    <Content Include="Content\css\news_content.css" />
-    <Content Include="Content\images\article_bg1.gif" />
-    <Content Include="Content\images\article_bg2.gif" />
-    <Content Include="Content\images\article_bg3.gif" />
-    <Content Include="Content\images\header_bg.jpg" />
-    <Content Include="Content\images\icon-uparrowsmallwhite.png" />
-    <Content Include="Content\images\join.gif" />
-    <Content Include="Content\images\join1.gif" />
-    <Content Include="Content\images\news_header.jpg" />
-    <Content Include="Content\images\news_list_bg.jpg" />
-    <Content Include="Content\images\news_list_bott.jpg" />
-    <Content Include="Content\images\news_list_left.jpg" />
-    <Content Include="Content\images\online.gif" />
-    <Content Include="Content\images\online1.gif" />
-    <Content Include="Content\images\post.gif" />
-    <Content Include="Content\images\post1.gif" />
-    <Content Include="Content\images\rain.gif" />
-    <Content Include="Content\images\rain1.gif" />
-    <Content Include="Content\images\refer.gif" />
-    <Content Include="Content\images\refer1.gif" />
-    <Content Include="Content\images\scotch-egg.jpg" />
-    <Content Include="Content\images\side_bg1.jpg" />
-    <Content Include="Content\images\tempphoto-1.jpg" />
-    <Content Include="Content\images\tempphoto-2.jpg" />
-    <Content Include="Content\images\tempphoto-3.jpg" />
-    <Content Include="Content\images\tempphoto-4.jpg" />
-    <Content Include="Content\images\tempphoto-5.jpg" />
-    <Content Include="Content\images\tempphoto-6.jpg" />
-    <Content Include="Content\images\thumb-video-1.jpg" />
-    <Content Include="Content\images\thumb-video-3.jpg" />
-    <Content Include="Content\images\transpBlack.png" />
+    <Content Include="Content\imgs\b.png" />
+    <Content Include="Content\imgs\favicon.ico" />
+    <Content Include="Content\imgs\ico-comments.png" />
+    <Content Include="Content\imgs\ico-forks.png" />
+    <Content Include="Content\imgs\ico-likes.png" />
+    <Content Include="Content\imgs\ico-watchers.png" />
+    <Content Include="Content\imgs\pic.png" />
+    <Content Include="Content\less\less-1.1.5.min.js" />
     <Content Include="Global.asax" />
-    <Content Include="Scripts\index.js" />
-    <Content Include="Scripts\jquery-1.5.1.min.js" />
-    <Content Include="Scripts\newsChange.js" />
-    <Content Include="Scripts\scroll.js" />
+    <Content Include="Scripts\components\base.js" />
+    <Content Include="Scripts\components\blog-posts.js" />
+    <Content Include="Scripts\components\dribbble.js" />
+    <Content Include="Scripts\components\github.js" />
+    <Content Include="Scripts\components\instagram.js" />
+    <Content Include="Scripts\components\links.js" />
+    <Content Include="Scripts\components\mobile.js" />
+    <Content Include="Scripts\components\twitter.js" />
+    <Content Include="Scripts\libs\bootstrap-modal.js" />
+    <Content Include="Scripts\libs\handlebars.js" />
+    <Content Include="Scripts\libs\jquery.url.js" />
+    <Content Include="Scripts\libs\json.js" />
+    <Content Include="Scripts\libs\moment.min.js" />
+    <Content Include="Scripts\libs\prettify.js" />
+    <Content Include="Scripts\libs\require.js" />
+    <Content Include="Scripts\libs\spin.min.js" />
+    <Content Include="Scripts\libs\text.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -213,12 +192,25 @@
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Blog\Post.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\less\base.less" />
+    <Content Include="Content\less\buttons.less" />
+    <Content Include="Content\less\code.less" />
+    <Content Include="Content\less\mixins.less" />
+    <Content Include="Content\less\modals.less" />
+    <Content Include="Content\less\profiles.less" />
+    <Content Include="Content\less\reset.less" />
+    <Content Include="Content\less\styles-mobile.less" />
+    <Content Include="Content\less\styles.less" />
+    <Content Include="Content\less\variables.less" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Blog\Index.cshtml" />
@@ -246,15 +238,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\Admin\Views\Auth\Login.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\Shared\_Layout.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\Home\Index.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\News\List.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
