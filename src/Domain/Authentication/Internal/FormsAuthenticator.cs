@@ -28,23 +28,23 @@ namespace Domain.Authentication.Internal
             return validated;
         }
 
-        public bool ValidateUser(string username, string password)
+        public bool ValidateUser(string name, string password)
         {
             var configName = ConfigurationManager.AppSettings["pheart.configuration.authentication.username"];
             var configPassword = ConfigurationManager.AppSettings["pheart.configuration.authentication.password"];
 
-            if(username==configName && password==configPassword)
+            if(name==configName && password==configPassword)
             {
                 return true;
             }
 
-            if (string.IsNullOrEmpty(password.Trim()) || string.IsNullOrEmpty(username.Trim()))
+            if (string.IsNullOrEmpty(password.Trim()) || string.IsNullOrEmpty(name.Trim()))
             {
                 return false;
             }
 
             string hash = FormsAuthentication.HashPasswordForStoringInConfigFile(password.Trim(), "md5");
-            return service.Users.Any(u => u.Username == username.Trim() && u.Password == hash);
+            return service.Users.Any(u => u.Name == name.Trim() && u.Password == hash);
         }
 
         public void Logout()
