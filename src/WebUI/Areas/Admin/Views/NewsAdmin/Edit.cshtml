@@ -39,7 +39,7 @@
         </p>
         <p>
             <label>
-                新闻内容:</label><textarea class="xheditor" style="width: 680px; height: 600px;"></textarea></p>
+                新闻内容:</label><textarea id="content" style="width: 680px; height: 500px;"></textarea></p>
         <input type="submit" value="提交" />
     </fieldset>
     </form>
@@ -48,4 +48,15 @@
 @section Scripts
 {
     <script src="@Url.Content("~/Areas/Admin/xheditor/xheditor-1.1.13-zh-cn.min.js")" type="text/javascript"></script>
+    <script type="text/javascript">
+        $(function () {
+            $('#content').xheditor({ skin: 'o2007blue', tools: 'mfull', urlType: 'rel',
+                upLinkUrl: "@Url.Content("~/Areas/Admin/xheditor/upload.aspx")", upLinkExt: "zip,rar,txt",
+                upImgUrl: "@Url.Content("~/Areas/Admin/xheditor/upload.aspx")", upImgExt: "jpg,jpeg,gif,png",
+                upFlashUrl: "@Url.Content("~/Areas/Admin/xheditor/upload.aspx")", upFlashExt: "swf",
+                upMediaUrl: "@Url.Content("~/Areas/Admin/xheditor/upload.aspx")", upMediaExt: "avi",
+                localUrlTest: /^https?:\/\/[^\/]*?(yxxx\.com)\//i, remoteImgSaveUrl: '@Url.Content("~/Areas/Admin/xheditor/saveremoteimg.aspx")'
+            });
+        });
+ </script>
 }

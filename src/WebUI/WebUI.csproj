@@ -165,6 +165,8 @@
     <Content Include="Areas\Admin\Content\img\transdmin-light.gif" />
     <Content Include="Areas\Admin\Content\js\jNice.js" />
     <Content Include="Areas\Admin\Content\js\jquery-1.4.4.min.js" />
+    <Content Include="Areas\Admin\xheditor\saveremoteimg.aspx" />
+    <Content Include="Areas\Admin\xheditor\upload.aspx" />
     <Content Include="Areas\Admin\xheditor\xheditor-1.1.13-zh-cn.min.js" />
     <Content Include="Areas\Admin\xheditor\xheditor_emot\default\angry.gif" />
     <Content Include="Areas\Admin\xheditor\xheditor_emot\default\awkward.gif" />
@@ -497,6 +499,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Areas\Admin\Models\" />
+    <Folder Include="Areas\Admin\xheditor\upload\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\Admin\Views\Shared\_LayoutAdmin.cshtml" />
@@ -521,6 +524,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\Admin\Views\NewsAdmin\Edit.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Admin\Views\NewsAdmin\View.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
