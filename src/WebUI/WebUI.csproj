@@ -131,8 +131,6 @@
     <Compile Include="Areas\Admin\Controllers\DashboardController.cs" />
     <Compile Include="Areas\Admin\Controllers\DashboardViewModel.cs" />
     <Compile Include="Areas\Admin\Controllers\NewsAdminController.cs" />
-    <Compile Include="Controllers\BlogController.cs" />
-    <Compile Include="Controllers\BlogViewModel.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\HomeViewModel.cs" />
     <Compile Include="Controllers\NewsViewModel.cs" />
