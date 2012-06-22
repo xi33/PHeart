@@ -489,6 +489,10 @@
       <Project>{BB3C8D77-FCE2-4853-8BC2-CC0806FD472E}</Project>
       <Name>Domain</Name>
     </ProjectReference>
+    <ProjectReference Include="..\EFData\EFData.csproj">
+      <Project>{BF243FE2-417F-4FF9-8EDB-9242B84B383F}</Project>
+      <Name>EFData</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Shared\_MINIPROFILER UPDATED Layout.cshtml" />

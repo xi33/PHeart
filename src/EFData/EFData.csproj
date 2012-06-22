@@ -51,6 +51,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Authentication\RoleRepository.cs" />
+    <Compile Include="Authentication\UserRepository.cs" />
     <Compile Include="FstClassRepository.cs" />
     <Compile Include="PHeartDbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

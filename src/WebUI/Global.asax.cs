@@ -11,6 +11,7 @@ using Autofac;
 using Autofac.Integration.Mvc;
 using Domain.Authentication;
 using Domain.Repositories;
+using EFData;
 using StackExchange.Profiling;
 
 namespace WebUI
@@ -29,8 +30,8 @@ namespace WebUI
             builder.RegisterControllers(Assembly.GetExecutingAssembly());
 
             //Domain
-            builder.RegisterModule(new MoqRepositoriesModule());
-            //builder.RegisterModule(new RepositoriesModule());
+            //builder.RegisterModule(new MoqRepositoriesModule());
+            builder.RegisterModule(new RepositoriesModule());
 
             //Domain Authentication
             builder.RegisterModule(new AuthenticationModule());
