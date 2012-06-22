@@ -5,7 +5,7 @@ using Domain.Models.Authentication;
 
 namespace EFData
 {
-    class PHeartDbContext:DbContext
+    public class PHeartDbContext:DbContext
     {
         public DbSet<User> Users { get; set; }
         public DbSet<Role> Roles { get; set; }
