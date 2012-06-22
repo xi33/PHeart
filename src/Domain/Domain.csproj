@@ -72,21 +72,18 @@
     <Compile Include="Models\Authentication\User.cs" />
     <Compile Include="Models\FstClass.cs" />
     <Compile Include="Models\News.cs" />
-    <Compile Include="Models\Post.cs" />
     <Compile Include="Models\SndClass.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\Authentication\IRoleRepository.cs" />
     <Compile Include="Repositories\Authentication\IUserRepository.cs" />
     <Compile Include="Repositories\IFstClassRepository.cs" />
     <Compile Include="Repositories\INewsRepository.cs" />
-    <Compile Include="Repositories\IPostRepository.cs" />
     <Compile Include="Repositories\IRepository.cs" />
     <Compile Include="Repositories\ISndClassRepository.cs" />
     <Compile Include="Repositories\MoqRepositoriesModule.cs" />
     <Compile Include="Services\Authentication\RoleService.cs" />
     <Compile Include="Services\Authentication\UserService.cs" />
     <Compile Include="Services\NewsService.cs" />
-    <Compile Include="Services\PostService.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

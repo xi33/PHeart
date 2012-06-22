@@ -12,6 +12,7 @@ namespace Domain.Models
         public string Author { get; set; }
         public DateTime Published { get; set; }
         public int Views { get; set; }
+        public string ImageUrl { get; set; }
         public string Body { get; set; }
 
         public int FstClassId { get; set; }

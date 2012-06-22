@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+﻿@using StackExchange.Profiling
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -8,8 +9,9 @@
     <!--[if IE 6]><link rel="stylesheet" type="text/css" media="screen" href="@Url.Content("~/Areas/Admin/Content/css/ie6.css")" /><![endif]-->
     <!--[if IE 7]><link rel="stylesheet" type="text/css" media="screen" href="@Url.Content("~/Areas/Admin/Content/css/ie7.css")" /><![endif]-->
     <!-- JavaScripts-->
-    <script type="text/javascript" src="@Url.Content("~/Areas/Admin/Content/js/jquery.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Areas/Admin/Content/js/jquery-1.4.4.min.js")"></script>
     <script type="text/javascript" src="@Url.Content("~/Areas/Admin/Content/js/jNice.js")"></script>
+    @RenderSection("Scripts", false)
 </head>
 <body>
     <div id="wrapper">
@@ -51,8 +53,7 @@
                 </div>
                 <!-- // #sidebar -->
                 <!-- h2 stays for breadcrumbs -->
-                <h2>
-                    <a href="#">后台管理</a> &raquo; <a href="#" class="active">@ViewBag.Title</a></h2>
+                <h2><a href="#">后台管理</a> &raquo; <a href="#" class="active">@ViewBag.Title</a></h2>
                 @RenderBody()
                 <!-- // #main -->
                 <div class="clear">
@@ -65,5 +66,6 @@
             Feel free to use and customize it. <a href="http://www.perspectived.com">Credit is appreciated.</a></p>
     </div>
     <!-- // #wrapper -->
+    @MiniProfiler.RenderIncludes()
 </body>
 </html>
