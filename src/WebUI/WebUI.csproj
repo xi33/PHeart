@@ -476,13 +476,7 @@
     <Content Include="Views\Shared\Error.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Blog\Post.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\Blog\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Domain\Domain.csproj">
