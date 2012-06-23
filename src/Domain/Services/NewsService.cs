@@ -24,7 +24,7 @@ namespace Domain.Services
             this.sndClassRepository = sndClassRepository;
             this.newsRepository = newsRepository;
 
-        } 
+        }
         #endregion
 
         #region FstClass
@@ -41,7 +41,7 @@ namespace Domain.Services
         public void UpdateFstClass(FstClass fstClassToUpdate)
         {
             fstClassRepository.Update(fstClassToUpdate);
-        } 
+        }
         #endregion
 
         #region SndClass
@@ -65,7 +65,7 @@ namespace Domain.Services
         public void AddSndClass(SndClass sndClassToAdd)
         {
             sndClassRepository.Insert(sndClassToAdd);
-        } 
+        }
         #endregion
 
         public IQueryable<News> GetNewsListBySndClassId(int sndClassId)
@@ -83,6 +83,14 @@ namespace Domain.Services
         public void CreateNews(News newsToAdd)
         {
             newsRepository.Insert(newsToAdd);
+
+        }
+
+        public void AddNewsView(int newsId)
+        {
+            var news = newsRepository.Get(newsId);
+            news.Views++;
+            newsRepository.Update(news);
         }
     }
 }

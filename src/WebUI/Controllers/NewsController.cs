@@ -27,7 +27,7 @@ namespace WebUI.Controllers
         {
             ViewBag.FstClasses = newsService.FstClasses.AsEnumerable().OrderBy(_ => _.Id).AsQueryable();
 
-            var model = new NewsViewModel.List();
+            var model = new NewsViewModel.ListModel();
             model.SndClasses = newsService.GetSndClassesByFstClassId(fstClassId);
             if (sndClassId == 0)
             {
@@ -38,6 +38,18 @@ namespace WebUI.Controllers
                 model.ActivateSndClass = model.SndClasses.SingleOrDefault(snd => snd.Id == sndClassId);
             }
             model.ActivateNewsList = newsService.GetNewsListBySndClassId(model.ActivateSndClass.Id);
+            return View(model);
+        }
+
+        public ActionResult Content(int id)
+        {
+            ViewBag.FstClasses = newsService.FstClasses.AsEnumerable().OrderBy(_ => _.Id).AsQueryable();
+
+            newsService.AddNewsView(id);
+            var model = new NewsViewModel.ContentModel();
+            model.News = newsService.GetNewsById(id);
+            model.ActivateSndClass = model.News.SndClass;
+            model.SndClasses = newsService.GetSndClassesByFstClassId(model.ActivateSndClass.FstClassId);
             return View(model);
         }
 

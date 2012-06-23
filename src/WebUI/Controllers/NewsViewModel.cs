@@ -8,11 +8,18 @@ namespace WebUI.Controllers
 {
     public class NewsViewModel
     {
-        public class List
+        public class ListModel
         {
             public SndClass ActivateSndClass { get; set; }
             public IQueryable<SndClass> SndClasses { get; set; }
             public IQueryable<News> ActivateNewsList { get; set; }
+        }
+
+        public class ContentModel 
+        {
+            public SndClass ActivateSndClass { get; set; }
+            public IQueryable<SndClass> SndClasses { get; set; }
+            public News News { get; set; }
         }
     }
 }

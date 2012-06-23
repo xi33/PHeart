@@ -1,0 +1,50 @@
+﻿@model WebUI.Controllers.NewsViewModel.ContentModel
+@{
+    ViewBag.Title = "Content";
+}
+@section Content
+{
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/css/news_content.css")" />
+}
+<div id="news_main">
+    <div id="news_side">
+        @*<p>
+                <span id="school_but">校园新闻</span></p>
+            <p>
+                <span id="society_but">社会新闻</span></p>*@
+        @foreach (var snd in Model.SndClasses)
+        {
+            <p>
+                <span id="school_but">@Html.ActionLink(snd.Name, "List", "News", new { fstClassId = snd.FstClassId, sndClassId = snd.Id }, null)</span></p>
+        }
+        <p>
+            <a href="#">我要投稿</a></p>
+        <div id="aside1">
+            <a href="#">
+                <img src="@Url.Content("~/Content/images/join1.gif")" /><p>
+                    我要参加</p>
+            </a><a href="#">
+                <img src="@Url.Content("~/Content/images/refer1.gif")" /><p>
+                    在线咨询</p>
+            </a><a href="#">
+                <img src="@Url.Content("~/Content/images/rain1.gif")" /><p>
+                    (心雨)</p>
+            </a><a href="#">
+                <img src="@Url.Content("~/Content/images/post1.gif")" /><p>
+                    (心灵驿站)</p>
+            </a><a href="#">
+                <img src="@Url.Content("~/Content/images/online1.gif")" /><p>
+                    大学生在线</p>
+            </a>
+        </div>
+    </div>
+    <div class="news_article clearfix">
+        <h2>
+            @Model.News.Title</h2>
+        <p>
+            <span>作者:@Model.News.Author</span><span>来源：大学生心理自助中心</span><span>更新时间：@Model.News.Published</span><span>阅读：@Model.News.Views</span></p>
+        <div class="school_news">
+            @Html.Raw(Model.News.Body)
+        </div>
+    </div>
+</div>

@@ -1,4 +1,4 @@
-﻿@model WebUI.Controllers.NewsViewModel.List
+﻿@model WebUI.Controllers.NewsViewModel.ListModel
 @{
     ViewBag.Title = "新闻列表";
 }
@@ -44,12 +44,13 @@
         </div>
         <div class="news_list school_news clearfix)">
             <div>
-                校园新闻</div>
+                @Model.ActivateSndClass.Name</div>
             <ul>
-                <li><span>2011.9.9</span><a href="#">垃圾开发思路</a></li>
-                <li><span>2011.9.9</span><a href="#">诶我和他分手的快乐分手</a></li>
-                <li><span>2011.9.9</span><a href="#">的两款手机份额无法思考的了</a></li>
-                <li><span>2011.9.9</span><a href="#">水电费和ukfskd</a></li>
+                @foreach (var n in Model.ActivateNewsList)
+                {
+                    <li><a href="@Url.Action("Content", new { id = n.Id })"><span>@n.Title</span>
+                    </a></li>
+                }
                 <li><span>2011.9.9</span><a href="#">斯蒂芬解放</a></li>
             </ul>
         </div>
