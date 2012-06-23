@@ -86,11 +86,21 @@ namespace Domain.Services
 
         }
 
+        public void UpdateNews(News newsToUpdate)
+        {
+            newsRepository.Update(newsToUpdate);
+        }
+
         public void AddNewsView(int newsId)
         {
             var news = newsRepository.Get(newsId);
             news.Views++;
             newsRepository.Update(news);
+        }
+
+        public void DeleteNews(int newsId)
+        {
+            newsRepository.Delete(newsId);
         }
     }
 }

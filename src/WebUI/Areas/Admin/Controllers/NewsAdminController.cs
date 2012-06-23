@@ -27,7 +27,19 @@ namespace WebUI.Areas.Admin.Controllers
 
         public ActionResult List()
         {
-            return View();
+            var model = new NewsAdminViewModel.ListModel();
+            var sndClass = newsService.FstClasses.Take(1).SingleOrDefault().SndClass.Take(1).SingleOrDefault();
+            model.NewsList = newsService.GetNewsListBySndClassId(sndClass.Id);
+            model.SndClassName = sndClass.Name;
+            return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult List(NewsAdminViewModel.ListModel model)
+        {
+            model.NewsList = newsService.GetNewsListBySndClassId(model.SndClassId);
+            model.SndClassName = newsService.GetSndClassById(model.SndClassId).Name;
+            return View(model);
         }
 
         public ActionResult New()
@@ -45,7 +57,7 @@ namespace WebUI.Areas.Admin.Controllers
                                     Author = model.Author,
                                     Published = DateTime.Now,
                                     FstClassId = model.FstClassId,
-                                    SndClassId=model.SndClassId,
+                                    SndClassId = model.SndClassId,
                                     ImageUrl = "",
                                     Body = model.Body
                                 };
@@ -56,10 +68,35 @@ namespace WebUI.Areas.Admin.Controllers
         public ActionResult Edit(int newsId)
         {
             var model = new NewsAdminViewModel.EditModel();
-            model.NewsToEdit = newsService.GetNewsById(newsId);
-            model.SndClassId = model.NewsToEdit.SndClassId;
-            model.FstClassId = newsService.GetSndClassById(model.SndClassId).FstClassId;
+            var news = newsService.GetNewsById(newsId);
+            model.Id = newsId;
+            model.Title = news.Title;
+            model.Author = news.Author;
+            model.FstClassId = news.FstClassId;
+            model.SndClassId = news.SndClassId;
+            model.Body = news.Body;
             return View(model);
+        }
+
+        [HttpPost]
+        [ValidateInput(false)]
+        public ActionResult Edit(NewsAdminViewModel.EditModel model)
+        {
+            var newsToUpdate = newsService.GetNewsById(model.Id);
+            newsToUpdate.Title = model.Title;
+            newsToUpdate.Author = model.Author;
+            newsToUpdate.Published = DateTime.Now.Date;
+            newsToUpdate.FstClassId = model.FstClassId;
+            newsToUpdate.SndClassId = model.SndClassId;
+            newsToUpdate.Body = model.Body;
+            newsService.UpdateNews(newsToUpdate);
+            return View(model);
+        }
+
+        public ActionResult Delete(int newsId)
+        {
+            newsService.DeleteNews(newsId);
+            return RedirectToAction("List");
         }
 
         #region Get ClassList
@@ -103,7 +140,7 @@ namespace WebUI.Areas.Admin.Controllers
             {
                 return Json(new { ok = false, message = ex.Message });
             }
-        } 
+        }
         #endregion
 
     }
