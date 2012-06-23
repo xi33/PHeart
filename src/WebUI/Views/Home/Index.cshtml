@@ -1,4 +1,5 @@
-﻿@{
+﻿@model WebUI.Controllers.HomeViewModel
+@{
     ViewBag.Title = "首页";
 }
 @section Content
@@ -12,55 +13,21 @@
     <div id="slideBox">
         <div id="slide" class="grid_11 slideWrap">
             <div style="width: 1920px; left: 0px;" class="slideInner bigSlide">
-                <div class="imgWrap">
-                    <a target="_blank" href="http://online.cumt.edu.cn/download/download_movie.aspx?id=4224">
-                        <img src="@Url.Content("~/Content/images/scotch-egg.jpg")" title="美国之音VOA 音视频合集 PS：四六级也已经不远了     大家都加油~~..."
-                            alt="slide"></a>
-                    <div style="display: block; opacity: 0.6;" class="text showNow">
-                        <div class="textInner">
-                            <p>
-                                <a target="_blank" href="http://online.cumt.edu.cn/download/download_movie.aspx?id=4224"
-                                    title="美国之音VOA 音视频合集">美国之音VOA 音视频合集</a>
-                            </p>
+                @foreach (var n in ViewBag.IndexNews)
+                {
+                    <div class="imgWrap">
+                        <a target="_blank" href="@Url.Action("Content", "News", new { id = n.Id })">
+                            <img src="@n.ImageUrl" title="" alt="slide"></a>
+                        <div style="display: none; opacity: 0.6;" class="text showNow">
+                            <div class="textInner">
+                                <p>
+                                    <a target="_blank" href="@Url.Action("Content", "News", new { id = n.Id })" title="@n.Title">
+                                        @n.Title</a>
+                                </p>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="imgWrap">
-                    <a target="_blank" href="http://online.cumt.edu.cn/news/newsread.aspx?id=40810">
-                        <img src="@Url.Content("~/Content/images/tempphoto-1.jpg")" title="" alt="slide"></a>
-                    <div style="display: none; opacity: 0.6;" class="text showNow">
-                        <div class="textInner">
-                            <p>
-                                <a target="_blank" href="http://online.cumt.edu.cn/news/newsread.aspx?id=40810" title="作家们赶紧来领稿酬啦~~ 话说第二期未领稿费的童鞋们记得也要过来。。">
-                                    作家们赶紧来领稿酬啦~~ 话说第二期未领稿费的童鞋们记得也要过来。。</a>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="imgWrap">
-                    <a target="_blank" href="images/学生在线_矿大人的网络家园.htm">
-                        <img src="@Url.Content("~/Content/images/tempphoto-6.jpg")" title="2011校园十佳歌手大赛又开始啦 想唱的，能唱的，爱唱的都去吧~~" alt="slide"></a>
-                    <div style="display: none; opacity: 0.6;" class="text showNow">
-                        <div class="textInner">
-                            <p>
-                                <a target="_blank" href="images/学生在线_矿大人的网络家园.htm" title="2011校园十佳歌手大赛又开始啦 想唱的，能唱的，爱唱的都去吧~~">
-                                    2011校园十佳歌手大赛又开始啦 想唱的，能唱的，爱唱的都去吧~~</a>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="imgWrap">
-                    <a target="_blank" href="http://online.cumt.edu.cn/news/newsread.aspx?id=40810">
-                        <img src="@Url.Content("~/Content/images/tempphoto-5.jpg")" title="" alt="slide"></a>
-                    <div style="display: none; opacity: 0.6;" class="text showNow">
-                        <div class="textInner">
-                            <p>
-                                <a target="_blank" href="http://online.cumt.edu.cn/news/newsread.aspx?id=40810" title="作家们赶紧来领稿酬啦~~ 话说第二期未领稿费的童鞋们记得也要过来。。">
-                                    作家们赶紧来领稿酬啦~~ 话说第二期未领稿费的童鞋们记得也要过来。。</a>
-                            </p>
-                        </div>
-                    </div>
-                </div>
+                }
             </div>
             <ul class="button">
                 <li class="now"></li>
@@ -72,23 +39,22 @@
     </div>
     <div id="article">
         <h1>
-            <span id="teach" class="articleTitle bg1">心理辅导</span> <span id="test" class="articleTitle">
-                心理测试</span>
+            <span id="teach" class="articleTitle bg1">新闻快报</span> <span id="test" class="articleTitle">
+                心理辅导</span>
         </h1>
         <div id="1" class="artile_list">
             <ul>
-                <li><span>2011.10.9</span><a href="#">心灵相约改版了</a></li>
-                <li><span>2011.10.9</span><a href="#">心灵相约改版了</a></li>
-                <li><span>2011.10.9</span><a href="#">心灵相约改版了</a></li>
-                <li><span>2011.10.9</span><a href="#">心灵相约改版了</a></li>
-                <li><span>2011.10.9</span><a href="#">心灵相约改版了</a></li>
+                @foreach (var m in Model.News1)
+                {
+                    <li><a href="@Url.Action("Content", "News", new { id = m.Id })">@m.Title</a></li>
+                }
             </ul>
             <ul>
-                <li><span>2011.10.9</span><a href="#">心灵相约改版了aaaaaaaaaaaaaaa</a></li>
-                <li><span>2011.10.9</span><a href="#">心灵相约改版了</a></li>
-                <li><span>2011.10.9</span><a href="#">心灵相约改版了</a></li>
-                <li><span>2011.10.9</span><a href="#">心灵相约改版了</a></li>
-                <li><span>2011.10.9</span><a href="#">心灵相约改版了</a></li>
+                @foreach (var m in Model.News2)
+                {
+                    <li><a href="@Url.Action("Content", "News", new { id = m.Id })">@m.Title</a></li>
+
+                }
             </ul>
             <div style="clear: left;">
             </div>
@@ -99,18 +65,18 @@
         </h1>
         <div id="2" class="artile_list">
             <ul>
-                <li><span>2011.10.9</span><a href="#">心灵相约改版了</a></li>
-                <li><span>2011.10.9</span><a href="#">心灵相约改版了</a></li>
-                <li><span>2011.10.9</span><a href="#">心灵相约改版了</a></li>
-                <li><span>2011.10.9</span><a href="#">心灵相约改版了</a></li>
-                <li><span>2011.10.9</span><a href="#">心灵相约改版了</a></li>
+                @foreach (var m in Model.News3)
+                {
+                    <li><a href="@Url.Action("Content", "News", new { id = m.Id })">@m.Title</a></li>
+
+                }
             </ul>
             <ul>
-                <li><span>2011.10.9</span><a href="#">心灵相约改版了</a></li>
-                <li><span>2011.10.9</span><a href="#">心灵相约改版了</a></li>
-                <li><span>2011.10.9</span><a href="#">心灵相约改版了</a></li>
-                <li><span>2011.10.9</span><a href="#">心灵相约改版了</a></li>
-                <li><span>2011.10.9</span><a href="#">心灵相约改版了</a></li>
+                @foreach (var m in Model.News4)
+                {
+                    <li><a href="@Url.Action("Content", "News", new { id = m.Id })">@m.Title</a></li>
+
+                }
             </ul>
         </div>
     </div>

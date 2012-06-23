@@ -30,11 +30,15 @@
             </p>
             <p>
                 <label>
-                    新闻内容:</label>
-                @*<textarea id="content" style="width: 680px; height: 500px;"></textarea>*@
-                @Html.TextAreaFor(_ => _.Body, new { style = "width: 680px; height: 500px;" })
-            </p>
-            <input type="submit" value="提交" />
+                    图片地址(可选):</label>@Html.TextBoxFor(_ => _.ImageUrl, new { @class = "text-long" })</p>
+            <p>
+                <p>
+                    <label>
+                        新闻内容:</label>
+                    @*<textarea id="content" style="width: 680px; height: 500px;"></textarea>*@
+                    @Html.TextAreaFor(_ => _.Body, new { style = "width: 680px; height: 500px;" })
+                </p>
+                <input type="submit" value="提交" />
         </fieldset>
     }
 </div>

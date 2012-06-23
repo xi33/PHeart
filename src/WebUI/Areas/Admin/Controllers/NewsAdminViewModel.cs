@@ -15,6 +15,7 @@ namespace WebUI.Areas.Admin.Controllers
             public string Author { get; set; }
             public int FstClassId { get; set; }
             public int SndClassId { get; set; }
+            public string ImageUrl { get; set; }
             public string Body { get; set; }
         }
 
@@ -25,6 +26,7 @@ namespace WebUI.Areas.Admin.Controllers
             public string Author { get; set; }
             public int FstClassId { get; set; }
             public int SndClassId { get; set; }
+            public string ImageUrl { get; set; }
             public string Body { get; set; }
         }
 

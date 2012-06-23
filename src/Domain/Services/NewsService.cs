@@ -50,6 +50,11 @@ namespace Domain.Services
             return sndClassRepository.Get(id);
         }
 
+        public IQueryable<SndClass> SndClasses
+        {
+            get { return sndClassRepository.GetAll(); }
+        }
+
         public void UpdateSndClass(SndClass sndClassToUpdate)
         {
             sndClassRepository.Update(sndClassToUpdate);
@@ -68,10 +73,18 @@ namespace Domain.Services
         }
         #endregion
 
+        #region News
         public IQueryable<News> GetNewsListBySndClassId(int sndClassId)
         {
             return newsRepository.GetAll()
                 .Where(news => news.SndClassId == sndClassId)
+                .OrderBy(news => news.Id);
+        }
+
+        public IQueryable<News> GetNewsByFstClassId(int fstId)
+        {
+            return newsRepository.GetAll()
+                .Where(news => news.FstClassId == fstId)
                 .OrderBy(news => news.Id);
         }
 
@@ -98,9 +111,16 @@ namespace Domain.Services
             newsRepository.Update(news);
         }
 
+        public IQueryable<News> NewsListWithImage
+        {
+            get { return newsRepository.GetAll().Where(_ => !string.IsNullOrEmpty(_.ImageUrl)); }
+        }
+
         public void DeleteNews(int newsId)
         {
             newsRepository.Delete(newsId);
-        }
+        } 
+
+        #endregion
     }
 }

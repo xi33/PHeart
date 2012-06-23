@@ -8,10 +8,11 @@ namespace WebUI.Controllers
 {
     public class HomeViewModel
     {
-        public class Index
-        {
-            public IQueryable<FstClass> FstClasses { get; set; }
-        }
-
+        public IQueryable<News> News1 { get; set; }
+        public IQueryable<News> News2 { get; set; }
+        public IQueryable<News> News3 { get; set; }
+        public IQueryable<News> News4 { get; set; }
     }
+
+
 }

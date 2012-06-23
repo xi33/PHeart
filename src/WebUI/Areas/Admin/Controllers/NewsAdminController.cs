@@ -51,6 +51,10 @@ namespace WebUI.Areas.Admin.Controllers
         [ValidateInput(false)]
         public ActionResult New(NewsAdminViewModel.NewModel model)
         {
+            if(string.IsNullOrEmpty(model.ImageUrl))
+            {
+                model.ImageUrl = "";
+            }
             var newsToAdd = new News()
                                 {
                                     Title = model.Title,
@@ -58,7 +62,7 @@ namespace WebUI.Areas.Admin.Controllers
                                     Published = DateTime.Now,
                                     FstClassId = model.FstClassId,
                                     SndClassId = model.SndClassId,
-                                    ImageUrl = "",
+                                    ImageUrl = model.ImageUrl,
                                     Body = model.Body
                                 };
             newsService.CreateNews(newsToAdd);
@@ -74,6 +78,7 @@ namespace WebUI.Areas.Admin.Controllers
             model.Author = news.Author;
             model.FstClassId = news.FstClassId;
             model.SndClassId = news.SndClassId;
+            model.ImageUrl = news.ImageUrl;
             model.Body = news.Body;
             return View(model);
         }
@@ -82,15 +87,20 @@ namespace WebUI.Areas.Admin.Controllers
         [ValidateInput(false)]
         public ActionResult Edit(NewsAdminViewModel.EditModel model)
         {
+            if(string.IsNullOrEmpty(model.ImageUrl))
+            {
+                model.ImageUrl = "";
+            }
             var newsToUpdate = newsService.GetNewsById(model.Id);
             newsToUpdate.Title = model.Title;
             newsToUpdate.Author = model.Author;
             newsToUpdate.Published = DateTime.Now.Date;
             newsToUpdate.FstClassId = model.FstClassId;
             newsToUpdate.SndClassId = model.SndClassId;
+            newsToUpdate.ImageUrl = model.ImageUrl;
             newsToUpdate.Body = model.Body;
             newsService.UpdateNews(newsToUpdate);
-            return View(model);
+            return RedirectToAction("List");
         }
 
         public ActionResult Delete(int newsId)
