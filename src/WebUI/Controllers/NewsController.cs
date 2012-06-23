@@ -37,7 +37,7 @@ namespace WebUI.Controllers
             {
                 model.ActivateSndClass = model.SndClasses.SingleOrDefault(snd => snd.Id == sndClassId);
             }
-            model.ActivateNewsList = newsService.GetNewsBySndClassId(model.ActivateSndClass.Id);
+            model.ActivateNewsList = newsService.GetNewsListBySndClassId(model.ActivateSndClass.Id);
             return View(model);
         }
 

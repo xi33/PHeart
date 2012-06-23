@@ -9,9 +9,9 @@ namespace EFData
 {
     public class NewsRepository :Repository<News>, INewsRepository
     {
-        public NewsRepository(PHeartDbContext context):base(context)
-        {
+        //public NewsRepository(PHeartDbContext context):base(context)
+        //{
             
-        }
+        //}
     }
 }

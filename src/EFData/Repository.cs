@@ -4,6 +4,7 @@ using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Text;
+using Domain.Models;
 using Domain.Repositories;
 
 namespace EFData
@@ -19,10 +20,10 @@ namespace EFData
             Context = new PHeartDbContext();
         }
 
-        public Repository(PHeartDbContext context)
-        {
-            Context = context;
-        } 
+        //public Repository(PHeartDbContext context)
+        //{
+        //    Context = context;
+        //} 
         #endregion
 
         protected DbSet<TEntity> DbSet
@@ -36,6 +37,7 @@ namespace EFData
         public void Insert(TEntity entity)
         {
             DbSet.Add(entity);
+            Context.SaveChanges();
         }
 
         //R
@@ -55,6 +57,7 @@ namespace EFData
         {
             DbSet.Attach(entity);
             Context.Entry(entity).State = EntityState.Modified;
+            Context.SaveChanges();
         }
 
         //D
@@ -62,6 +65,7 @@ namespace EFData
         {
             TEntity entityToDelete = DbSet.Find(id);
             Delete(entityToDelete);
+            Context.SaveChanges();
         }
 
         public void Delete(TEntity entity)
@@ -71,6 +75,7 @@ namespace EFData
                 DbSet.Attach(entity);
             }
             DbSet.Remove(entity);
+            Context.SaveChanges();
         }
 
         //public IEnumerable<TEntity> GetWithRawSql(string query, params object[] parameters)

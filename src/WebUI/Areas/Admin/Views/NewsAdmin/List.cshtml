@@ -3,35 +3,23 @@
     Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";    
 }
 <div id="main">
-    <form action="" class="jNice">
+    <form action="">
     <h3>
         新闻类别</h3>
     <fieldset>
         <p>
             <label>
-                 第一级分类:</label>
-            <select>
-                <option>Select one</option>
-                <option>Select two</option>
-                <option>Select tree</option>
-                <option>Select one</option>
-                <option>Select two</option>
-                <option>Select tree</option>
+                第一级分类:</label>
+            <select id="FstClass" onchange="javascript:cascadingsnd()">
             </select>
         </p>
         <p>
             <label>
                 第二级分类:</label>
-            <select>
-                <option>Select one</option>
-                <option>Select two</option>
-                <option>Select tree</option>
-                <option>Select one</option>
-                <option>Select two</option>
-                <option>Select tree</option>
+            <select id="SndClass">
             </select>
         </p>
-        <input type="submit" value="Submit Query" />
+        <input type="submit" value="提交" />
     </fieldset>
     <h3>
         新闻列表
@@ -97,3 +85,56 @@
     </form>
 </div>
 <!-- // #main -->
+@section Scripts
+{
+    <script type="text/javascript">
+        //生成层叠菜单，第一级菜单
+        $(document).ready(
+        function PopulateCascadingTable() {
+            var urlfst = '@Url.Action("GetFstClasses")';
+            var select = $('#FstClass');
+            $.ajax({
+                type: "POST",
+                url: urlfst,
+                success: function (returndata) {
+                    if (returndata.ok) {
+                        select.empty();
+                        $.each(returndata.data, function (index, itemData) {
+                            select.append($('<option></option>').val(itemData.Id).html(itemData.Name));
+                        });
+                        select.show();
+                        select.change();
+                    }
+                    else {
+                        window.alert(' error : ' + returndata.message);
+                    }
+                }
+            });
+        });
+
+        //生成层叠菜单，第二级菜单
+        function cascadingsnd() {
+            var id = $("#FstClass").val();
+            var urlsnd = '@Url.Action("GetSndClasses")';
+            var select = $('#SndClass');
+            $.ajax({
+                type: "POST",
+                url: urlsnd,
+                data: { fstId: id },
+                success: function (returndata) {
+                    if (returndata.ok) {
+                        select.empty();
+                        $.each(returndata.data, function (index, itemData) {
+                            select.append($('<option></option>').val(itemData.Id).html(itemData.Name));
+                        });
+                        select.show();
+                    }
+                    else {
+                        window.alert(' error : ' + returndata.message);
+                    }
+                }
+            });
+        }
+
+    </script>
+}

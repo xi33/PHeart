@@ -1,0 +1,48 @@
+﻿@model WebUI.Areas.Admin.Controllers.AccountViewModel.UsersModel
+@{
+    ViewBag.Title = "用户角色";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+<div id="main">
+    <h3>
+        用户管理
+    </h3>
+    <table cellpadding="0" cellspacing="0">
+        @foreach (var r in Model.Users)
+        {
+            <tr>
+                <td>
+                    @r.Name
+                </td>
+                <td class="action">
+                    <a href="#" class="view">查看用户文章</a>
+                </td>
+            </tr>
+        }
+    </table>
+    @using (Html.BeginForm("CreateNewUser", "Auth", FormMethod.Post, new { @class = "jNice" }))
+    {
+        <h3>
+            添加当前角色下新用户</h3>
+        <fieldset>
+            @Html.HiddenFor(model => model.RoleId)
+            <p>
+                <label>
+                    用户名</label>
+                @Html.TextBoxFor(_ => _.UserToAdd.Name, new { @class = "text-long" })
+            </p>
+            <p>
+                <label>
+                    邮箱</label>
+                @Html.TextBoxFor(_ => _.UserToAdd.Email, new { @class = "text-long" })
+            </p>
+            <p>
+                <label>
+                    密码</label>
+                @Html.TextBoxFor(_ => _.UserToAdd.Password, new { @class = "text-long" })
+            </p>
+            <input type="submit" value="创建" />
+        </fieldset>
+    }
+</div>
+<!-- // #main -->

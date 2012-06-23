@@ -23,6 +23,12 @@ namespace WebUI.Application.Authentication
             return DependencyResolver.Current.GetService<IMembershipProvider>().ValidateUser(username, password);
         }
 
+        public void CreateUser(string username, string password, string email, int roleId)
+        {
+            DependencyResolver.Current.GetService<IMembershipProvider>().CreateUser(username, password, email, roleId);
+        }
+
+
         #region Overrides of MembershipProvider
 
         /// <summary>

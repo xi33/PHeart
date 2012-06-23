@@ -9,6 +9,7 @@ namespace Domain.Services
 {
     public class NewsService
     {
+        #region ctor
         private readonly IFstClassRepository fstClassRepository;
         private readonly ISndClassRepository sndClassRepository;
         private readonly INewsRepository newsRepository;
@@ -23,25 +24,65 @@ namespace Domain.Services
             this.sndClassRepository = sndClassRepository;
             this.newsRepository = newsRepository;
 
-        }
+        } 
+        #endregion
 
+        #region FstClass
         public IQueryable<FstClass> FstClasses
         {
             get { return fstClassRepository.GetAll(); }
+        }
+
+        public FstClass GetFstClassById(int id)
+        {
+            return fstClassRepository.Get(id);
+        }
+
+        public void UpdateFstClass(FstClass fstClassToUpdate)
+        {
+            fstClassRepository.Update(fstClassToUpdate);
+        } 
+        #endregion
+
+        #region SndClass
+        public SndClass GetSndClassById(int id)
+        {
+            return sndClassRepository.Get(id);
+        }
+
+        public void UpdateSndClass(SndClass sndClassToUpdate)
+        {
+            sndClassRepository.Update(sndClassToUpdate);
         }
 
         public IQueryable<SndClass> GetSndClassesByFstClassId(int fstClassId)
         {
             return sndClassRepository.GetAll()
                 .Where(snd => snd.FstClassId == fstClassId)
-                .OrderBy(snd=>snd.Id);
+                .OrderBy(snd => snd.Id);
         }
 
-        public IQueryable<News> GetNewsBySndClassId(int sndClassId)
+        public void AddSndClass(SndClass sndClassToAdd)
+        {
+            sndClassRepository.Insert(sndClassToAdd);
+        } 
+        #endregion
+
+        public IQueryable<News> GetNewsListBySndClassId(int sndClassId)
         {
             return newsRepository.GetAll()
                 .Where(news => news.SndClassId == sndClassId)
                 .OrderBy(news => news.Id);
+        }
+
+        public News GetNewsById(int id)
+        {
+            return newsRepository.Get(id);
+        }
+
+        public void CreateNews(News newsToAdd)
+        {
+            newsRepository.Insert(newsToAdd);
         }
     }
 }

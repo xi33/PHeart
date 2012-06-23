@@ -48,10 +48,12 @@
   <ItemGroup>
     <Compile Include="Dapper\SqlHelper.cs" />
     <Compile Include="Dapper\SqlMapper.cs" />
-    <Compile Include="PostRepository.cs" />
+    <Compile Include="FstClassRepository.cs" />
+    <Compile Include="NewsRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RepositoriesModule.cs" />
     <Compile Include="Repository.cs" />
+    <Compile Include="SndClassRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Domain\Domain.csproj">

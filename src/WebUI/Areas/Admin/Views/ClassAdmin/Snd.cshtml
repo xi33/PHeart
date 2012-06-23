@@ -1,0 +1,39 @@
+﻿@model WebUI.Areas.Admin.Controllers.ClassAdminViewModel.SndModel
+@{
+    ViewBag.Title = "第二级分类";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+<div id="main">
+    <h3>
+        @Html.ActionLink("第一级分类", "Fst", "ClassAdmin") >> @Model.FstClass.Name
+    </h3>
+    <table cellpadding="0" cellspacing="0">
+        @foreach (var snd in Model.SndClasses)
+        {
+            <tr>
+                <td>
+                    @snd.Name
+                </td>
+                <td class="action">
+                    <a href="#" class="view">查看分类下新闻</a> <a href="@Url.Action("EditSnd", "ClassAdmin", new { id = snd.Id })" class="edit">
+                        修改分类名称</a> @*<a href="#" class="delete">删除</a>*@
+                </td>
+            </tr>
+        }
+    </table>
+    @using (Html.BeginForm("AddSnd", "ClassAdmin", FormMethod.Post, new { @class = "jNice" }))
+    {
+        <h3>
+            添加新的第二级分类名称</h3>
+        <fieldset>
+            @Html.HiddenFor(model => model.FstClass.Id)
+            <p>
+                <label>
+                    输入第二级分类名</label>
+                @Html.TextBoxFor(_ => _.SndClassToAdd.Name, new { @class = "text-long" })
+            </p>
+            <input type="submit" value="提交" />
+        </fieldset>
+    }
+</div>
+<!-- // #main -->

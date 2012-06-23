@@ -30,13 +30,13 @@ namespace Domain.Authentication.Internal
 
         public bool ValidateUser(string name, string password)
         {
-            var configName = ConfigurationManager.AppSettings["pheart.configuration.authentication.username"];
-            var configPassword = ConfigurationManager.AppSettings["pheart.configuration.authentication.password"];
+            //var configName = ConfigurationManager.AppSettings["pheart.configuration.authentication.username"];
+            //var configPassword = ConfigurationManager.AppSettings["pheart.configuration.authentication.password"];
 
-            if(name==configName && password==configPassword)
-            {
-                return true;
-            }
+            //if(name==configName && password==configPassword)
+            //{
+            //    return true;
+            //}
 
             if (string.IsNullOrEmpty(password.Trim()) || string.IsNullOrEmpty(name.Trim()))
             {

@@ -1,0 +1,21 @@
+﻿@model WebUI.Areas.Admin.Controllers.ClassAdminViewModel.EditFstModel
+@{
+    ViewBag.Title = "修改第一级分类名";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+<div id="main">
+    @using (Html.BeginForm("EditFst", "ClassAdmin", FormMethod.Post, new { @class = "jNice" }))
+    {
+        <h3>@Html.ActionLink("返回上级","Fst")</h3>
+        <fieldset>
+            @Html.HiddenFor(model => model.FstClassToEdit.Id)
+            <p>
+                <label>
+                    第一级分类名</label>
+                @Html.TextBoxFor(_ => _.FstClassToEdit.Name, new { @class = "text-long" })
+            </p>
+            <input type="submit" value="提交" />
+        </fieldset>
+    }
+</div>
+<!-- // #main -->

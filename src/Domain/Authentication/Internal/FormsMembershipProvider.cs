@@ -4,7 +4,7 @@ using System.Configuration;
 using System.Linq;
 using System.Text;
 using System.Web.Security;
-using Domain.Models.Authentication;
+using Domain.Models;
 using Domain.Repositories.Authentication;
 using Domain.Services.Authentication;
 
@@ -16,25 +16,25 @@ namespace Domain.Authentication.Internal
 
         public FormsMembershipProvider(IUserRepository repository)
         {
-            service=new UserService(repository);
+            service = new UserService(repository);
         }
 
-        public void CreateUser(string email, string name, string password)
+        public void CreateUser(string name, string password, string email, int roleId)
         {
             string hash = FormsAuthentication.HashPasswordForStoringInConfigFile(password.Trim(), "md5");
-            var user = new User() { Name = name, Email = email, Password = hash };
+            var user = new User() { Name = name, Email = email, Password = hash, RoleId = roleId };
             service.CreateNewUser(user);
         }
 
         public bool ValidateUser(string name, string password)
         {
-            var configName = ConfigurationManager.AppSettings["pheart.configuration.authentication.username"];
-            var configPassword = ConfigurationManager.AppSettings["pheart.configuration.authentication.password"];
+            //var configName = ConfigurationManager.AppSettings["pheart.configuration.authentication.username"];
+            //var configPassword = ConfigurationManager.AppSettings["pheart.configuration.authentication.password"];
 
-            if (name == configName && password == configPassword)
-            {
-                return true;
-            }
+            //if (name == configName && password == configPassword)
+            //{
+            //    return true;
+            //}
 
             if (string.IsNullOrEmpty(password.Trim()) || string.IsNullOrEmpty(name.Trim()))
             {

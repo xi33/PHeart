@@ -126,11 +126,15 @@
     <Compile Include="App_Start\MiniProfiler.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\AccountController.cs" />
+    <Compile Include="Areas\Admin\Controllers\AccountViewModel.cs" />
     <Compile Include="Areas\Admin\Controllers\AuthController.cs" />
     <Compile Include="Areas\Admin\Controllers\AuthViewModel.cs" />
+    <Compile Include="Areas\Admin\Controllers\ClassAdminController.cs" />
     <Compile Include="Areas\Admin\Controllers\DashboardController.cs" />
     <Compile Include="Areas\Admin\Controllers\DashboardViewModel.cs" />
     <Compile Include="Areas\Admin\Controllers\NewsAdminController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ClassAdminViewModel.cs" />
+    <Compile Include="Areas\Admin\Controllers\NewsAdminViewModel.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\HomeViewModel.cs" />
     <Compile Include="Controllers\NewsViewModel.cs" />
@@ -458,6 +462,13 @@
     <Content Include="Content\images\thumb-video-1.jpg" />
     <Content Include="Content\images\thumb-video-3.jpg" />
     <Content Include="Content\images\transpBlack.png" />
+    <Content Include="Areas\Admin\Views\ClassAdmin\Fst.cshtml" />
+    <Content Include="Areas\Admin\Views\ClassAdmin\EditFst.cshtml" />
+    <Content Include="Areas\Admin\Views\ClassAdmin\Snd.cshtml" />
+    <Content Include="Areas\Admin\Views\ClassAdmin\EditSnd.cshtml" />
+    <Content Include="Areas\Admin\Views\NewsAdmin\New.cshtml" />
+    <Content Include="Areas\Admin\Views\Account\Role.cshtml" />
+    <Content Include="Areas\Admin\Views\Account\Users.cshtml" />
     <None Include="doc\develop-note.md" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\index.js" />
@@ -495,7 +506,6 @@
     <Content Include="Areas\Admin\Views\Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Areas\Admin\Models\" />
     <Folder Include="Areas\Admin\xheditor\upload\" />
   </ItemGroup>
   <ItemGroup>
@@ -521,9 +531,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\Admin\Views\NewsAdmin\Edit.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Areas\Admin\Views\NewsAdmin\View.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

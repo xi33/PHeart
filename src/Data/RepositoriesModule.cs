@@ -11,7 +11,9 @@ namespace Data
     {
         protected override void Load(ContainerBuilder builder)
         {
-            builder.RegisterType<PostRepository>().As<IPostRepository>().InstancePerLifetimeScope();
+            builder.RegisterType<FstClassRepository>().As<IFstClassRepository>().InstancePerDependency();
+            builder.RegisterType<SndClassRepository>().As<ISndClassRepository>().InstancePerDependency();
+            builder.RegisterType<NewsRepository>().As<INewsRepository>().InstancePerDependency();
         }
     }
 }

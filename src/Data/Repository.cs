@@ -42,7 +42,11 @@ namespace Data
 
         public void Delete(object id)
         {
-            throw new NotImplementedException();
+            using (System.Data.SqlClient.SqlConnection sqlConnection = new System.Data.SqlClient.SqlConnection(SqlHelper.ConnectionString))
+            {
+                sqlConnection.Open();
+                sqlConnection.Execute(string.Format(SqlHelper.DeleteStatement, typeof(TEntity).Name), new { Id = (int)id });
+            }
         }
 
         public void Delete(TEntity entity)

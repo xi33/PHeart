@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Domain.Models.Authentication;
+using Domain.Models;
 using Domain.Repositories.Authentication;
 
 namespace Domain.Services.Authentication
@@ -20,6 +20,11 @@ namespace Domain.Services.Authentication
         public IQueryable<User> Users
         {
             get { return repository.GetAll(); }
+        }
+
+        public IQueryable<User> GetUsersByRoleId(int roleId)
+        {
+            return repository.GetAll().Where(_ => _.RoleId == roleId);
         }
 
         // Get user by username

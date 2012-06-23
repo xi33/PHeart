@@ -6,7 +6,7 @@ using Domain.Models;
 
 namespace Domain.Repositories
 {
-    public interface IFstClassRepository:IRepository<FstClass>
+    public interface IFstClassRepository : IRepository<FstClass>
     {
     }
 }

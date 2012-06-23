@@ -1,0 +1,24 @@
+﻿@model WebUI.Areas.Admin.Controllers.ClassAdminViewModel.FstModel
+@{
+    ViewBag.Title = "第一级分类";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+<div id="main">
+    <h3>
+        第一级分类
+    </h3>
+    <table cellpadding="0" cellspacing="0">
+        @foreach (var fst in Model.FstClasses)
+        {
+            <tr>
+                <td>
+                    @fst.Name
+                </td>
+                <td class="action">
+                    <a href="@Url.Action("Snd", "ClassAdmin", new { fstId = fst.Id })" class="view">查看二级分类</a><a href="@Url.Action("EditFst", "ClassAdmin", new { id = fst.Id })" class="edit">修改分类名称</a>
+                </td>
+            </tr>
+        }
+    </table>
+</div>
+<!-- // #main -->

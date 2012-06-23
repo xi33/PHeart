@@ -1,0 +1,24 @@
+﻿@model WebUI.Areas.Admin.Controllers.AccountViewModel.RoleModel
+@{
+    ViewBag.Title = "用户角色";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+<div id="main">
+    <h3>
+        角色管理
+    </h3>
+    <table cellpadding="0" cellspacing="0">
+        @foreach (var r in Model.Roles)
+        {
+            <tr>
+                <td>
+                    @r.Name
+                </td>
+                <td class="action">
+                    <a href="@Url.Action("Users", "Account", new { roleId = r.Id })" class="view">查看角色下用户</a>
+                </td>
+            </tr>
+        }
+    </table>
+</div>
+<!-- // #main -->

@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using Autofac;
 using Domain.Models;
-using Domain.Models.Authentication;
 using Domain.Repositories.Authentication;
 using Moq;
 

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Domain.Models.Authentication;
+using Domain.Models;
 using Domain.Repositories.Authentication;
 
 namespace Domain.Services.Authentication
@@ -24,6 +24,11 @@ namespace Domain.Services.Authentication
         public Role GetRole(string roleName)
         {
             return repository.GetAll().SingleOrDefault(r => r.Name == roleName);
+        }
+
+        public IQueryable<Role> Roles
+        {
+            get { return repository.GetAll(); }
         }
 
     }

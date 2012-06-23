@@ -1,25 +1,30 @@
-﻿@{
+﻿@model WebUI.Areas.Admin.Controllers.AuthViewModel.LoginModel
+@{
     ViewBag.Title = "登录";
     Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
 }
 <div id="main">
-    <form action="" class="jNice">
-        <h3>用户登录</h3>
+    @using (Html.BeginForm("Login", "Auth", FormMethod.Post, new { @class = "jNice" }))
+    {
+        <h3>
+            用户登录</h3>
         <fieldset>
+            @Html.HiddenFor(model => model.ReturnUrl)
             <p>
-                <label>用户名:</label>
-                <input type="text" class="text-long" />
+                <label>
+                    用户名:</label>
+                @Html.TextBoxFor(_ => _.Username, new { @class = "text-long" })
             </p>
             <p>
-                <label>登录密码:</label>
-                <input type="text" class="text-long" />
+                <label>
+                    登录密码:</label>
+                @Html.PasswordFor(_ => _.Password, new { @class = "text-long" })
             </p>
             @*<p>
-                <label>Sample label:</label>
-                <input type="text" class="text-long" />
-            </p>*@
+            <label>Sample label:</label>
+            <input type="text" class="text-long" />
+        </p>*@
             <input type="submit" value="登录" />
-        </fieldset>
-    </form>
+        </fieldset> }
 </div>
 <!-- // #main -->

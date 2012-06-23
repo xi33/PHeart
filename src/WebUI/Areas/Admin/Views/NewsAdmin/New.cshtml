@@ -1,0 +1,106 @@
+﻿@model WebUI.Areas.Admin.Controllers.NewsAdminViewModel.NewModel
+@{
+    ViewBag.Title = "添加新闻";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+<div id="main">
+    @using (Html.BeginForm("New", "NewsAdmin"))
+    {
+        <h3>
+            添加新闻</h3>
+        <fieldset>
+            <p>
+                <label>
+                    标题:</label>@Html.TextBoxFor(_=>_.Title,new {@class="text-long"})</p>
+            <p>
+                <label>
+                    作者:</label>@Html.TextBoxFor(_=>_.Author,new {@class="text-long"})</p>
+            <p>
+                <label>
+                    第一级分类:</label>
+                <select id="FstClass" name="FstClassId" onchange="javascript:cascadingsnd()">
+                </select>
+            </p>
+            <p>
+                <label>
+                    第二级分类:</label>
+                <select id="SndClass" name="SndClassId">
+                </select>
+            </p>
+            <p>
+                <label>
+                    新闻内容:</label>
+                @*<textarea id="content" style="width: 680px; height: 500px;"></textarea>*@
+                @Html.TextAreaFor(_ => _.Body, new { style = "width: 680px; height: 500px;" })
+            
+            </p>
+            <input type="submit" value="提交" />
+        </fieldset>
+    }
+</div>
+<!-- // #main -->
+@section Scripts
+{
+    <script src="@Url.Content("~/Areas/Admin/xheditor/xheditor-1.1.13-zh-cn.min.js")" type="text/javascript"></script>
+    <script type="text/javascript">
+        $(function () {
+            $('#Body').xheditor({ skin: 'o2007blue', tools: 'mfull', urlType: 'rel',
+                upLinkUrl: "@Url.Content("~/Areas/Admin/xheditor/upload.aspx")", upLinkExt: "zip,rar,txt",
+                upImgUrl: "@Url.Content("~/Areas/Admin/xheditor/upload.aspx")", upImgExt: "jpg,jpeg,gif,png",
+                upFlashUrl: "@Url.Content("~/Areas/Admin/xheditor/upload.aspx")", upFlashExt: "swf",
+                upMediaUrl: "@Url.Content("~/Areas/Admin/xheditor/upload.aspx")", upMediaExt: "avi",
+                localUrlTest: /^https?:\/\/[^\/]*?(yxxx\.com)\//i, remoteImgSaveUrl: '@Url.Content("~/Areas/Admin/xheditor/saveremoteimg.aspx")'
+            });
+        });
+    </script>
+    <script type="text/javascript">
+        //生成层叠菜单，第一级菜单
+        $(document).ready(
+        function PopulateCascadingTable() {
+            var urlfst = '@Url.Action("GetFstClasses")';
+            var select = $('#FstClass');
+            $.ajax({
+                type: "POST",
+                url: urlfst,
+                success: function (returndata) {
+                    if (returndata.ok) {
+                        select.empty();
+                        $.each(returndata.data, function (index, itemData) {
+                            select.append($('<option></option>').val(itemData.Id).html(itemData.Name));
+                        });
+                        select.show();
+                        select.change();
+                    }
+                    else {
+                        window.alert(' error : ' + returndata.message);
+                    }
+                }
+            });
+        });
+
+        //生成层叠菜单，第二级菜单
+        function cascadingsnd() {
+            var id = $("#FstClass").val();
+            var urlsnd = '@Url.Action("GetSndClasses")';
+            var select = $('#SndClass');
+            $.ajax({
+                type: "POST",
+                url: urlsnd,
+                data: { fstId: id },
+                success: function (returndata) {
+                    if (returndata.ok) {
+                        select.empty();
+                        $.each(returndata.data, function (index, itemData) {
+                            select.append($('<option></option>').val(itemData.Id).html(itemData.Name));
+                        });
+                        select.show();
+                    }
+                    else {
+                        window.alert(' error : ' + returndata.message);
+                    }
+                }
+            });
+        }
+
+    </script>
+}

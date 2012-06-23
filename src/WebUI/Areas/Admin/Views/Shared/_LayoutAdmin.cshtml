@@ -11,7 +11,6 @@
     <!-- JavaScripts-->
     <script type="text/javascript" src="@Url.Content("~/Areas/Admin/Content/js/jquery-1.4.4.min.js")"></script>
     <script type="text/javascript" src="@Url.Content("~/Areas/Admin/Content/js/jNice.js")"></script>
-    @RenderSection("Scripts", false)
 </head>
 <body>
     <div id="wrapper">
@@ -20,18 +19,18 @@
             <a href="#"><span>Transdmin Light</span></a></h1>
         <!-- You can name the links with lowercase, they will be transformed to uppercase by CSS, we prefered to name them with uppercase to have the same effect with disabled stylesheet -->
         <ul id="mainNav">
-            <li><a href="#" class="active">DASHBOARD</a></li>
+            <li><a href="#" class="active">后台首页</a></li>
             <!-- Use the "active" class for the active menu item  -->
-            <li><a href="#">ADMINISTRATION</a></li>
-            <li><a href="#">DESIGN</a></li>
-            <li><a href="#">OPTION</a></li>
+            <li><a href="@Url.Action("List","NewsAdmin")">新闻管理</a></li>
+            <li><a href="@Url.Action("Fst","ClassAdmin")">分类管理</a></li>
+            <li><a href="@Url.Action("Role","Account")">用户管理</a></li>
             @*<li class="logout"><a href="#">LOGOUT</a></li>*@
-            <li class="logout">
-                @*@if (ViewData.IsLoggedIn())*@
-                @if(Request.IsAuthenticated)
+            <li class="logout">@*@if (ViewData.IsLoggedIn())*@
+                @if (Request.IsAuthenticated)
                 {
-                    <a href="@Url.Action("LogOut", "Auth")">退出</a>
-                }else
+                    <a href="@Url.Action("LogOut", "Auth")">@User.Identity.Name</a>
+                }
+                else
                 {
                     <a href="@Url.Action("Login", "Auth")">登录</a>
                 }
@@ -53,7 +52,8 @@
                 </div>
                 <!-- // #sidebar -->
                 <!-- h2 stays for breadcrumbs -->
-                <h2><a href="#">后台管理</a> &raquo; <a href="#" class="active">@ViewBag.Title</a></h2>
+                <h2>
+                    <a href="#">后台管理</a> &raquo; <a href="#" class="active">@ViewBag.Title</a></h2>
                 @RenderBody()
                 <!-- // #main -->
                 <div class="clear">
@@ -67,5 +67,6 @@
     </div>
     <!-- // #wrapper -->
     @MiniProfiler.RenderIncludes()
+    @RenderSection("Scripts", false)
 </body>
 </html>

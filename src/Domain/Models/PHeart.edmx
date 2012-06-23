@@ -1,0 +1,357 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="PHeartModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+  <EntityContainer Name="PHeartModelStoreContainer">
+    <EntitySet Name="FstClasses" EntityType="PHeartModel.Store.FstClasses" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="SndClasses" EntityType="PHeartModel.Store.SndClasses" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Newses" EntityType="PHeartModel.Store.Newses" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Users" EntityType="PHeartModel.Store.Users" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Roles" EntityType="PHeartModel.Store.Roles" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="FstClassSndClass" Association="PHeartModel.Store.FstClassSndClass">
+      <End Role="FstClass" EntitySet="FstClasses" />
+      <End Role="SndClass" EntitySet="SndClasses" />
+    </AssociationSet>
+    <AssociationSet Name="FstClassNews" Association="PHeartModel.Store.FstClassNews">
+      <End Role="FstClass" EntitySet="FstClasses" />
+      <End Role="News" EntitySet="Newses" />
+    </AssociationSet>
+    <AssociationSet Name="SndClassNews" Association="PHeartModel.Store.SndClassNews">
+      <End Role="SndClass" EntitySet="SndClasses" />
+      <End Role="News" EntitySet="Newses" />
+    </AssociationSet>
+    <AssociationSet Name="RoleUser" Association="PHeartModel.Store.RoleUser">
+      <End Role="Role" EntitySet="Roles" />
+      <End Role="User" EntitySet="Users" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="FstClasses">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="SndClasses">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="FstClassId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Newses">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Title" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Author" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Published" Type="datetime" Nullable="false" />
+    <Property Name="Views" Type="int" Nullable="false" />
+    <Property Name="ImageUrl" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="Body" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="FstClassId" Type="int" Nullable="false" />
+    <Property Name="SndClassId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Email" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Password" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="RoleId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Roles">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <Association Name="FstClassSndClass">
+    <End Role="FstClass" Type="PHeartModel.Store.FstClasses" Multiplicity="1" />
+    <End Role="SndClass" Type="PHeartModel.Store.SndClasses" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="FstClass">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="SndClass">
+        <PropertyRef Name="FstClassId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FstClassNews">
+    <End Role="FstClass" Type="PHeartModel.Store.FstClasses" Multiplicity="1" />
+    <End Role="News" Type="PHeartModel.Store.Newses" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="FstClass">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="News">
+        <PropertyRef Name="FstClassId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="SndClassNews">
+    <End Role="SndClass" Type="PHeartModel.Store.SndClasses" Multiplicity="1" />
+    <End Role="News" Type="PHeartModel.Store.Newses" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SndClass">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="News">
+        <PropertyRef Name="SndClassId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="RoleUser">
+    <End Role="Role" Type="PHeartModel.Store.Roles" Multiplicity="1" />
+    <End Role="User" Type="PHeartModel.Store.Users" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Role">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="RoleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="PHeartModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="PHeartDbContext" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="FstClasses" EntityType="PHeartModel.FstClass" />
+          <EntitySet Name="SndClasses" EntityType="PHeartModel.SndClass" />
+          <AssociationSet Name="FstClassSndClass" Association="PHeartModel.FstClassSndClass">
+            <End Role="FstClass" EntitySet="FstClasses" />
+            <End Role="SndClass" EntitySet="SndClasses" />
+          </AssociationSet>
+          <EntitySet Name="Newses" EntityType="PHeartModel.News" />
+          <AssociationSet Name="FstClassNews" Association="PHeartModel.FstClassNews">
+            <End Role="FstClass" EntitySet="FstClasses" />
+            <End Role="News" EntitySet="Newses" />
+          </AssociationSet>
+          <AssociationSet Name="SndClassNews" Association="PHeartModel.SndClassNews">
+            <End Role="SndClass" EntitySet="SndClasses" />
+            <End Role="News" EntitySet="Newses" />
+          </AssociationSet>
+          <EntitySet Name="Users" EntityType="PHeartModel.User" />
+          <EntitySet Name="Roles" EntityType="PHeartModel.Role" />
+          <AssociationSet Name="RoleUser" Association="PHeartModel.RoleUser">
+            <End Role="Role" EntitySet="Roles" />
+            <End Role="User" EntitySet="Users" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="FstClass">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="SndClass" Relationship="PHeartModel.FstClassSndClass" FromRole="FstClass" ToRole="SndClass" />
+          <NavigationProperty Name="News" Relationship="PHeartModel.FstClassNews" FromRole="FstClass" ToRole="News" />
+        </EntityType>
+        <EntityType Name="SndClass">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Name" Nullable="false" />
+          <NavigationProperty Name="FstClass" Relationship="PHeartModel.FstClassSndClass" FromRole="SndClass" ToRole="FstClass" />
+          <Property Type="Int32" Name="FstClassId" Nullable="false" />
+          <NavigationProperty Name="News" Relationship="PHeartModel.SndClassNews" FromRole="SndClass" ToRole="News" />
+        </EntityType>
+        <Association Name="FstClassSndClass">
+          <End Type="PHeartModel.FstClass" Role="FstClass" Multiplicity="1" />
+          <End Type="PHeartModel.SndClass" Role="SndClass" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FstClass">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SndClass">
+              <PropertyRef Name="FstClassId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="News">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Title" Nullable="false" />
+          <Property Type="String" Name="Author" Nullable="false" />
+          <Property Type="DateTime" Name="Published" Nullable="false" />
+          <Property Type="Int32" Name="Views" Nullable="false" />
+          <Property Type="String" Name="ImageUrl" Nullable="true" />
+          <Property Type="String" Name="Body" Nullable="false" />
+          <NavigationProperty Name="FstClass" Relationship="PHeartModel.FstClassNews" FromRole="News" ToRole="FstClass" />
+          <Property Type="Int32" Name="FstClassId" Nullable="false" />
+          <NavigationProperty Name="SndClass" Relationship="PHeartModel.SndClassNews" FromRole="News" ToRole="SndClass" />
+          <Property Type="Int32" Name="SndClassId" Nullable="false" />
+        </EntityType>
+        <Association Name="FstClassNews">
+          <End Type="PHeartModel.FstClass" Role="FstClass" Multiplicity="1" />
+          <End Type="PHeartModel.News" Role="News" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FstClass">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="News">
+              <PropertyRef Name="FstClassId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SndClassNews">
+          <End Type="PHeartModel.SndClass" Role="SndClass" Multiplicity="1" />
+          <End Type="PHeartModel.News" Role="News" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SndClass">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="News">
+              <PropertyRef Name="SndClassId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Name" Nullable="false" />
+          <Property Type="String" Name="Email" Nullable="false" />
+          <Property Type="String" Name="Password" Nullable="false" />
+          <NavigationProperty Name="Role" Relationship="PHeartModel.RoleUser" FromRole="User" ToRole="Role" />
+          <Property Type="Int32" Name="RoleId" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Name" Nullable="false" />
+          <NavigationProperty Name="User" Relationship="PHeartModel.RoleUser" FromRole="Role" ToRole="User" />
+        </EntityType>
+        <Association Name="RoleUser">
+          <End Type="PHeartModel.Role" Role="Role" Multiplicity="1" />
+          <End Type="PHeartModel.User" Role="User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="PHeartModelStoreContainer" CdmEntityContainer="PHeartDbContext">
+    <EntitySetMapping Name="FstClasses">
+      <EntityTypeMapping TypeName="IsTypeOf(PHeartModel.FstClass)">
+        <MappingFragment StoreEntitySet="FstClasses">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SndClasses">
+      <EntityTypeMapping TypeName="IsTypeOf(PHeartModel.SndClass)">
+        <MappingFragment StoreEntitySet="SndClasses">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="FstClassId" ColumnName="FstClassId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Newses">
+      <EntityTypeMapping TypeName="IsTypeOf(PHeartModel.News)">
+        <MappingFragment StoreEntitySet="Newses">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="Author" ColumnName="Author" />
+          <ScalarProperty Name="Published" ColumnName="Published" />
+          <ScalarProperty Name="Views" ColumnName="Views" />
+          <ScalarProperty Name="ImageUrl" ColumnName="ImageUrl" />
+          <ScalarProperty Name="Body" ColumnName="Body" />
+          <ScalarProperty Name="FstClassId" ColumnName="FstClassId" />
+          <ScalarProperty Name="SndClassId" ColumnName="SndClassId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="IsTypeOf(PHeartModel.User)">
+        <MappingFragment StoreEntitySet="Users">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Roles">
+      <EntityTypeMapping TypeName="IsTypeOf(PHeartModel.Role)">
+        <MappingFragment StoreEntitySet="Roles">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams>
+      <Diagram Name="PHeart">
+        <EntityTypeShape EntityType="PHeartModel.FstClass" Width="1.5" PointX="0.75" PointY="0.75" Height="1.3969734700520831" IsExpanded="true" />
+        <EntityTypeShape EntityType="PHeartModel.SndClass" Width="1.5" PointX="2.75" PointY="0.75" Height="1.3969734700520831" />
+        <AssociationConnector Association="PHeartModel.FstClassSndClass">
+          <ConnectorPoint PointX="2.25" PointY="1.54399658203125" />
+          <ConnectorPoint PointX="2.75" PointY="1.54399658203125" />
+        </AssociationConnector>
+        <EntityTypeShape EntityType="PHeartModel.News" Width="1.5" PointX="0.75" PointY="3.625" Height="3.1161507161458326" IsExpanded="true" />
+        <AssociationConnector Association="PHeartModel.FstClassNews">
+          <ConnectorPoint PointX="1.5" PointY="2.5290128580729165" />
+          <ConnectorPoint PointX="1.5" PointY="3.625" />
+        </AssociationConnector>
+        <AssociationConnector Association="PHeartModel.SndClassNews">
+          <ConnectorPoint PointX="3.5" PointY="2.7200325520833335" />
+          <ConnectorPoint PointX="3.5" PointY="5.1830753580729159" />
+          <ConnectorPoint PointX="2.25" PointY="5.1830753580729159" />
+        </AssociationConnector>
+        <EntityTypeShape EntityType="PHeartModel.User" Width="1.5" PointX="7" PointY="0.875" Height="1.779012858072917" />
+        <EntityTypeShape EntityType="PHeartModel.Role" Width="1.5" PointX="5.125" PointY="0.875" Height="1.3969734700520831" />
+        <AssociationConnector Association="PHeartModel.RoleUser">
+          <ConnectorPoint PointX="6.625" PointY="1.6689965820312502" />
+          <ConnectorPoint PointX="7" PointY="1.6689965820312502" />
+        </AssociationConnector>
+      </Diagram>
+    </Diagrams>
+  </Designer>
+</edmx:Edmx>

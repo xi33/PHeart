@@ -20,17 +20,17 @@ namespace Domain.Authentication.Internal
 
         public bool IsUserInRole(string username, string roleName)
         {
-            //var user = userService.GetUser(username);
-            //var role = roleService.GetRole(roleName);
-            //if (user == null || role == null)
-            //    return false;
-            //return user.Roles.Any(_ => _.Name == roleName);
-            return true;
+            var user = userService.GetUser(username);
+            var role = roleService.GetRole(roleName);
+            if (user == null || role == null)
+                return false;
+            return user.Role.Name == role.Name;
         }
 
         public string[] GetRolesForUser(string username)
         {
-            return new[] { "Admin", "Moderator" };
+            var user = userService.GetUser(username);
+            return user == null ? new string[] { string.Empty } : new string[] { user.Role.Name };
         }
     }
 }

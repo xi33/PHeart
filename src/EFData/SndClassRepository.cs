@@ -7,11 +7,11 @@ using Domain.Repositories;
 
 namespace EFData
 {
-    public class FstClassRepository :Repository<FstClass>, IFstClassRepository
+    public class SndClassRepository :Repository<SndClass>, ISndClassRepository
     {
-        public FstClassRepository(PHeartDbContext context):base(context)
-        {
+        //public SndClassRepository(PHeartDbContext context):base(context)
+        //{
             
-        }
+        //}
     }
 }
